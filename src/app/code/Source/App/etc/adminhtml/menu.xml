@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Source_App::content_elements"
+             title="Magento Admin Custom"
+             translate="title"
+             module="Source_App"
+             sortOrder="60"
+             resource="Magento_Backend::admin"/>
+        <add id="Magento_Cms::post"
+             title="Post"
+             translate="title"
+             module="Source_App"
+             sortOrder="0"
+             parent="Source_App::content_elements"
+             action="source_app/post"
+             resource="Magento_Backend::admin"/>
+        <add id="Magento_Cms::product"
+             title="Product"
+             translate="title"
+             module="Source_App"
+             sortOrder="0"
+             parent="Source_App::content_elements"
+             action="source_app/product"
+             resource="Magento_Backend::admin"/>
+    </menu>
+</config>
