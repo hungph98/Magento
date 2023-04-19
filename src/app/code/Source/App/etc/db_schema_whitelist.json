@@ -1,0 +1,34 @@
+{
+    "Blog_post": {
+        "column": {
+            "post_id": true,
+            "title": true,
+            "meta_title": true,
+            "meta_keywords": true,
+            "meta_description": true,
+            "content": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "product": {
+        "column": {
+            "product_id": true,
+            "thumbnail": true,
+            "name": true,
+            "categories": true,
+            "sku": true,
+            "stock_status": true,
+            "price": true,
+            "attribute": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}
