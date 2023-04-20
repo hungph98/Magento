@@ -25,6 +25,22 @@
             "price": true,
             "attribute": true,
             "created_at": true,
+            "updated_at": true,
+            "status": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "blog_post": {
+        "column": {
+            "post_id": true,
+            "title": true,
+            "meta_title": true,
+            "meta_keywords": true,
+            "meta_description": true,
+            "content": true,
+            "created_at": true,
             "updated_at": true
         },
         "constraint": {
