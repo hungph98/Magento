@@ -8,14 +8,6 @@
              module="Source_App"
              sortOrder="60"
              resource="Magento_Backend::admin"/>
-        <add id="Magento_Cms::post"
-             title="Post"
-             translate="title"
-             module="Source_App"
-             sortOrder="0"
-             parent="Source_App::content_elements"
-             action="source_app/post"
-             resource="Magento_Backend::admin"/>
         <add id="Magento_Cms::product"
              title="Product"
              translate="title"

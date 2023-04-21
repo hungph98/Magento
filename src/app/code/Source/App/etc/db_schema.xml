@@ -1,20 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
-    <table name="blog_post" resource="default" engine="innodb">
-        <column xsi:type="smallint" name="post_id" unsigned="false" nullable="false" identity="true"/>
-        <column xsi:type="varchar" name="title" nullable="true" length="255"/>
-        <column xsi:type="varchar" name="meta_title" nullable="false" length="255" />
-        <column xsi:type="text" name="meta_keywords" nullable="true"/>
-        <column xsi:type="text" name="meta_description" nullable="true"/>
-        <column xsi:type="mediumtext" name="content" nullable="true"/>
-        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"/>
-        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP"/>
-        <constraint xsi:type="primary" referenceId="PRIMARY">
-            <column name="post_id"/>
-        </constraint>
-    </table>
-
     <!-- Table Product -->
     <table name="product" resource="default" engine="innodb" comment="Blog Post Table">
         <column xsi:type="smallint" name="product_id" unsigned="false" padding="5" nullable="false" identity="true"/>

@@ -8,7 +8,6 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
 {
     protected $loadedData;
 
-    // @codingStandardsIgnoreStart
     public function __construct(
         $name,
         $primaryFieldName,
@@ -20,7 +19,6 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
         $this->collection = $JobCollectionFactory->create();
         parent::__construct($name, $primaryFieldName, $requestFieldName, $meta, $data);
     }
-    // @codingStandardsIgnoreEnd
 
     public function getData()
     {
