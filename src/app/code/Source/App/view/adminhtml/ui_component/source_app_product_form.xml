@@ -137,7 +137,7 @@
         </field>
 
         <!-- Attributes -->
-        <field name="attributes" formElement="select">
+        <field name="attribute" formElement="select">
             <settings>
                 <validation>
                     <rule name="required-entry" xsi:type="boolean">true</rule>

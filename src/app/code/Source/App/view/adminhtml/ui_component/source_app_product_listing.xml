@@ -56,7 +56,7 @@
                     <item name="config" xsi:type="array">
                         <item name="type" xsi:type="string">delete</item>
                         <item name="label" xsi:type="string" translate="true">Delete</item>
-                        <item name="url" xsi:type="url" path="mageplaza_helloworld/post/massDelete"/>
+                        <item name="url" xsi:type="url" path="source_app/product/massDelete"/>
                         <item name="confirm" xsi:type="array">
                             <item name="title" xsi:type="string" translate="true">Delete Product</item>
                             <item name="message" xsi:type="string" translate="true">Are you sure you wan't to delete
@@ -66,32 +66,6 @@
                     </item>
                 </argument>
             </action>
-            <!--            <action name="change_status">-->
-            <!--                <argument name="data" xsi:type="array">-->
-            <!--                    <item name="config" xsi:type="array">-->
-            <!--                        <item name="type" xsi:type="string">change</item>-->
-            <!--                        <item name="label" xsi:type="string" translate="true">Change Status</item>-->
-            <!--                        <item name="url" xsi:type="url" path="mageplaza_helloworld/post/massDelete"/>-->
-            <!--                        <item name="confirm" xsi:type="array">-->
-            <!--                            <item name="title" xsi:type="string" translate="true">Change Status Product</item>-->
-            <!--                            <item name="message" xsi:type="string" translate="true">Are you sure you wan't to change status items?</item>-->
-            <!--                        </item>-->
-            <!--                    </item>-->
-            <!--                </argument>-->
-            <!--            </action>-->
-            <!--            <action name="update_attribute">-->
-            <!--                <argument name="data" xsi:type="array">-->
-            <!--                    <item name="config" xsi:type="array">-->
-            <!--                        <item name="type" xsi:type="string">update</item>-->
-            <!--                        <item name="label" xsi:type="string" translate="true">Update Attribute</item>-->
-            <!--                        <item name="url" xsi:type="url" path="mageplaza_helloworld/post/massDelete"/>-->
-            <!--                        <item name="confirm" xsi:type="array">-->
-            <!--                            <item name="title" xsi:type="string" translate="true">Update Attribute Product</item>-->
-            <!--                            <item name="message" xsi:type="string" translate="true">Are you sure you wan't to update attribute items?</item>-->
-            <!--                        </item>-->
-            <!--                    </item>-->
-            <!--                </argument>-->
-            <!--            </action>-->
         </massaction>
         <paging name="listing_paging"/>
         <exportButton name="export_button"/>
