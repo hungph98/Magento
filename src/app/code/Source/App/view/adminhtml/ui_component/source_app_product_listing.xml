@@ -16,6 +16,8 @@
             </item>
         </item>
     </argument>
+
+    <!-- Data Source -->
     <dataSource name="nameOfDataSource">
         <argument name="dataProvider" xsi:type="configurableObject">
             <argument name="class" xsi:type="string">
@@ -35,6 +37,8 @@
             </argument>
         </argument>
     </dataSource>
+
+    <!-- Listing Toolbar -->
     <listingToolbar name="listing_top">
         <argument name="data" xsi:type="array">
             <item name="config" xsi:type="array">
@@ -70,6 +74,8 @@
         <paging name="listing_paging"/>
         <exportButton name="export_button"/>
     </listingToolbar>
+
+    <!-- Columns -->
     <columns name="spinner_columns">
         <selectionsColumn name="ids">
             <argument name="data" xsi:type="array">
@@ -89,6 +95,8 @@
                 </item>
             </argument>
         </column>
+
+        <!-- Thumbnail -->
         <column name="thumbnail">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
@@ -100,9 +108,12 @@
                         </item>
                     </item>
                     <item name="label" xsi:type="string" translate="true">Thumbnail</item>
+                    <item name="sortOrder" xsi:type="number">0</item>
                 </item>
             </argument>
         </column>
+
+        <!-- Name -->
         <column name="name">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
@@ -114,9 +125,12 @@
                         </item>
                     </item>
                     <item name="label" xsi:type="string" translate="true">Name</item>
+                    <item name="sortOrder" xsi:type="number">1</item>
                 </item>
             </argument>
         </column>
+
+        <!-- Category -->
         <column name="categories">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
@@ -128,9 +142,12 @@
                         </item>
                     </item>
                     <item name="label" xsi:type="string" translate="true">Category</item>
+                    <item name="sortOrder" xsi:type="number">2</item>
                 </item>
             </argument>
         </column>
+
+        <!-- SKU-->
         <column name="sku">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
@@ -142,10 +159,37 @@
                         </item>
                     </item>
                     <item name="label" xsi:type="string" translate="true">SKU</item>
+                    <item name="sortOrder" xsi:type="number">3</item>
                 </item>
             </argument>
         </column>
+
+        <!-- Enable Product -->
         <column name="status">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="array">
+                    <item name="0" xsi:type="array">
+                        <item name="label" xsi:type="string">Enable</item>
+                        <item name="value" xsi:type="string">1</item>
+                    </item>
+                    <item name="1" xsi:type="array">
+                        <item name="label" xsi:type="string">Disable</item>
+                        <item name="value" xsi:type="string">0</item>
+                    </item>
+                </item>
+                <item name="config" xsi:type="array">
+                    <item name="editor" xsi:type="string">select</item>
+                    <item name="filter" xsi:type="string">select</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
+                    <item name="dataType" xsi:type="string">select</item>
+                    <item name="label" xsi:type="string" translate="true">Status</item>
+                    <item name="sortOrder" xsi:type="number">4</item>
+                </item>
+            </argument>
+        </column>
+
+        <!-- Stock Status -->
+        <column name="stock_status">
             <argument name="data" xsi:type="array">
                 <item name="options" xsi:type="array">
                     <item name="0" xsi:type="array">
@@ -162,24 +206,103 @@
                     <item name="filter" xsi:type="string">select</item>
                     <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
                     <item name="dataType" xsi:type="string">select</item>
-                    <item name="label" xsi:type="string" translate="true">Status</item>
+                    <item name="label" xsi:type="string" translate="true">Stock Status</item>
+                    <item name="sortOrder" xsi:type="number">5</item>
                 </item>
             </argument>
         </column>
+
+        <!-- Visibility-->
+        <column name="visibility">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="array">
+                    <item name="0" xsi:type="array">
+                        <item name="label" xsi:type="string">Not Visible Individually</item>
+                        <item name="value" xsi:type="string">0</item>
+                    </item>
+                    <item name="1" xsi:type="array">
+                        <item name="label" xsi:type="string">Catalog</item>
+                        <item name="value" xsi:type="string">2</item>
+                    </item>
+                    <item name="2" xsi:type="array">
+                        <item name="label" xsi:type="string">Search</item>
+                        <item name="value" xsi:type="string">3</item>
+                    </item>
+                    <item name="3" xsi:type="array">
+                        <item name="label" xsi:type="string">Catalog,Search</item>
+                        <item name="value" xsi:type="string">1</item>
+                    </item>
+                </item>
+                <item name="config" xsi:type="array">
+                    <item name="editor" xsi:type="string">select</item>
+                    <item name="filter" xsi:type="string">select</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
+                    <item name="dataType" xsi:type="string">select</item>
+                    <item name="label" xsi:type="string" translate="true">Visibility</item>
+                    <item name="sortOrder" xsi:type="number">6</item>
+                </item>
+            </argument>
+        </column>
+
+        <!-- Price -->
         <column name="price">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="filter" xsi:type="string">text</item>
                     <item name="editor" xsi:type="array">
-                        <item name="editorType" xsi:type="string">text</item>
+                        <item name="editorType" xsi:type="string">number</item>
                         <item name="validation" xsi:type="array">
                             <item name="required-entry" xsi:type="boolean">true</item>
                         </item>
                     </item>
                     <item name="label" xsi:type="string" translate="true">Price</item>
+                    <item name="sortOrder" xsi:type="number">7</item>
                 </item>
             </argument>
         </column>
+
+        <!-- Tax Class-->
+        <column name="stock_status">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="array">
+                    <item name="0" xsi:type="array">
+                        <item name="label" xsi:type="string">None</item>
+                        <item name="value" xsi:type="string">0</item>
+                    </item>
+                    <item name="1" xsi:type="array">
+                        <item name="label" xsi:type="string">Taxable Goods</item>
+                        <item name="value" xsi:type="string">1</item>
+                    </item>
+                </item>
+                <item name="config" xsi:type="array">
+                    <item name="editor" xsi:type="string">select</item>
+                    <item name="filter" xsi:type="string">select</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
+                    <item name="dataType" xsi:type="string">select</item>
+                    <item name="label" xsi:type="string" translate="true">Tax Class</item>
+                    <item name="sortOrder" xsi:type="number">8</item>
+                </item>
+            </argument>
+        </column>
+
+        <!-- Quantity-->
+        <column name="quantity">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="editor" xsi:type="array">
+                        <item name="editorType" xsi:type="string">number</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="required-entry" xsi:type="boolean">true</item>
+                        </item>
+                    </item>
+                    <item name="label" xsi:type="string" translate="true">Quantity</item>
+                    <item name="sortOrder" xsi:type="number">9</item>
+                </item>
+            </argument>
+        </column>
+
+        <!-- Attribute-->
         <column name="attribute">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
@@ -191,16 +314,19 @@
                         </item>
                     </item>
                     <item name="label" xsi:type="string" translate="true">Attribute</item>
+                    <item name="sortOrder" xsi:type="number">10</item>
                 </item>
             </argument>
         </column>
+
+        <!-- Action (Edit, Delete)-->
         <actionsColumn name="actions" class="\Source\App\Ui\Listing\Colums\Action">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="resizeEnabled" xsi:type="boolean">false</item>
                     <item name="resizeDefaultWidth" xsi:type="string">107</item>
                     <item name="indexField" xsi:type="string">product_id</item>
-                    <item name="sortOrder" xsi:type="number">110</item>
+                    <item name="sortOrder" xsi:type="number">11</item>
                 </item>
             </argument>
         </actionsColumn>
