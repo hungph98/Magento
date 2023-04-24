@@ -14,5 +14,17 @@
             <argument name="resourceModel" xsi:type="string">Source\App\Model\ResourceModel\Product</argument>
         </arguments>
     </virtualType>
+    <type name="Source\App\Model\ImageUploader">
+        <arguments>
+            <argument name="baseTmpPath" xsi:type="string">faq/tmp/icon</argument>
+            <argument name="basePath" xsi:type="string">faq/icon</argument>
+            <argument name="allowedExtensions" xsi:type="array">
+                <item name="jpg" xsi:type="string">jpg</item>
+                <item name="jpeg" xsi:type="string">jpeg</item>
+                <item name="gif" xsi:type="string">gif</item>
+                <item name="png" xsi:type="string">png</item>
+            </argument>
+        </arguments>
+    </type>
 
 </config>

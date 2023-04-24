@@ -4,35 +4,34 @@ namespace Source\App\Controller\Adminhtml\Product;
 
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
-use Magento\Backend\Model\View\Result\Redirect;
 use Magento\Framework\App\Request\DataPersistorInterface;
-use Magento\Framework\Controller\ResultInterface;
+use Magento\Framework\Exception\LocalizedException;
+use Source\App\Model\ProductFactory;
+use Source\App\Model\ImageUploader;
 
 class Save extends Action
 {
 
     protected $dataPersistor;
+    protected $productFactory;
+    protected $cacheManager;
+    protected $imageUploaderModel;
 
-    /**
-     * @param Context $context
-     * @param DataPersistorInterface $dataPersistor
-     */
-    public function __construct(Context $context, DataPersistorInterface $dataPersistor)
+    public function __construct(Context $context, DataPersistorInterface $dataPersistor, ProductFactory $productFactory, ImageUploader $imageUploaderModel)
     {
+        $this->productFactory = $productFactory;
+        $this->imageUploaderModel = $imageUploaderModel;
         $this->dataPersistor = $dataPersistor;
         parent::__construct($context);
     }
 
     /**
-     * Save action
-     *
-     * @return ResultInterface
+     * @throws LocalizedException
      */
     public function execute()
     {
-        /** @var Redirect $resultRedirect */
-        $resultRedirect = $this->resultRedirectFactory->create();
         $data = $this->getRequest()->getPostValue();
+        $resultRedirect = $this->resultRedirectFactory->create();
         if ($data) {
             $id = $this->getRequest()->getParam('product_id');
 
@@ -42,19 +41,32 @@ class Save extends Action
                 return $resultRedirect->setPath('*/*/');
             }
 
-            $model->setData($data);
-
-            if (isset($data['image']) && is_array($data['image'])) {
-                if (!empty($data['image']['delete'])) {
-                    $data['image'] = null;
-                } else {
-                    if (isset($data['image'][0]['name']) && isset($data['image'][0]['tmp_name'])) {
-                        $data['image'] = $data['image'][0]['name'];
+            if ($model->getId()) {
+                $pageData = $this->productFactory->create();
+                $pageData->load($model->getId());
+                if (isset($data['thumbnail'][0]['name'])) {
+                    $imageName1 = $pageData->getThumbnail();
+                    $imageName2 = $data['thumbnail'][0]['name'];
+                    if ($imageName1 != $imageName2) {
+                        $imageUrl = $data['thumbnail'][0]['url'];
+                        $imageName = $data['thumbnail'][0]['name'];
+                        $data['thumbnail'] = $this->imageUploaderModel->saveMediaImage($imageName, $imageUrl);
                     } else {
-                        unset($data['image']);
+                        $data['thumbnail'] = $data['thumbnail'][0]['name'];
                     }
+                } else {
+                    $data['thumbnail'] = '';
+                }
+            } else {
+                if (isset($data['thumbnail'][0]['name'])) {
+                    $imageUrl = $data['thumbnail'][0]['url'];
+                    $imageName = $data['thumbnail'][0]['name'];
+                    $data['thumbnail'] = $this->imageUploaderModel->saveMediaImage($imageName, $imageUrl);
                 }
             }
+
+            $model->setData($data);
+
             try {
                 $model->save();
                 $this->messageManager->addSuccessMessage(__('You saved the Product.'));
