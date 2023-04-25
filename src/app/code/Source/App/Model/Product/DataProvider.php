@@ -46,17 +46,20 @@ class DataProvider extends AbstractDataProvider
     public function getData(): array
     {
         if (isset($this->loadedData)) {
-            $items = $this->collection->getItems();
-            foreach ($items as $model) {
-                $this->loadedData[$model->getId()] = $model->getData();
-                if ($model->getImageField()) {
-                    $m['thumbnail'][0]['name'] = $model->getImageField();
-                    $m['thumbnail'][0]['url'] = $this->getMediaUrl($model->getImageField());
-                    $fullData = $this->loadedData;
-                    $this->loadedData[$model->getId()] = array_merge($fullData[$model->getId()], $m);
-                }
-            }
             return $this->loadedData;
+        }
+
+        $items = $this->collection->getItems();
+        foreach ($items as $model) {
+            $this->loadedData[$model->getId()] = $model->getData();
+            $image = [];
+            if($model->getThumbnail()) {
+                $image['thumbnail'][0]['name'] = $model->getThumbnail();
+                $image['thumbnail'][0]['url'] = $this->getMediaUrl().$model->getThumbnail();
+                $image['thumbnail'][0]['type'] = 'image';
+                $fullData = $this->loadedData;
+                $this->loadedData[$model->getId()] = array_merge($fullData[$model->getId()], (array)isset($image));
+            }
         }
 
         $product = $this->getCurrentPost();
@@ -86,8 +89,8 @@ class DataProvider extends AbstractDataProvider
     /**
      * @throws NoSuchEntityException
      */
-    public function getMediaUrl($path = ''): string
+    public function getMediaUrl(): string
     {
-        return $this->storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA) . 'source_app/product/' . $path;
+        return $this->storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA) . 'source_app/tmp/product/';
     }
 }
