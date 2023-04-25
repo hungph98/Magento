@@ -42,76 +42,8 @@
             <label>General</label>
         </settings>
 
-        <!-- Name -->
-        <field name="name" sortOrder="20" formElement="input">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="source" xsi:type="string">product</item>
-                </item>
-            </argument>
-            <settings>
-                <validation>
-                    <rule name="required-entry" xsi:type="boolean">true</rule>
-                </validation>
-                <dataType>text</dataType>
-                <label translate="true">Name</label>
-                <dataScope>name</dataScope>
-            </settings>
-        </field>
-
-        <!-- Categories -->
-        <field name="categories" sortOrder="20" formElement="input">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="source" xsi:type="string">product</item>
-                </item>
-            </argument>
-            <settings>
-                <validation>
-                    <rule name="required-entry" xsi:type="boolean">true</rule>
-                </validation>
-                <dataType>text</dataType>
-                <label translate="true">Category</label>
-                <dataScope>categories</dataScope>
-            </settings>
-        </field>
-
-        <!-- SKU -->
-        <field name="sku" sortOrder="20" formElement="input">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="source" xsi:type="string">product</item>
-                </item>
-            </argument>
-            <settings>
-                <validation>
-                    <rule name="required-entry" xsi:type="boolean">true</rule>
-                </validation>
-                <dataType>text</dataType>
-                <label translate="true">SKU</label>
-                <dataScope>sku</dataScope>
-            </settings>
-        </field>
-
-        <!-- Price -->
-        <field name="price" sortOrder="20" formElement="input">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="source" xsi:type="string">product</item>
-                </item>
-            </argument>
-            <settings>
-                <validation>
-                    <rule name="required-entry" xsi:type="boolean">true</rule>
-                </validation>
-                <dataType>number</dataType>
-                <label translate="true">Price</label>
-                <dataScope>price</dataScope>
-            </settings>
-        </field>
-
-        <!-- Status-->
-        <field name="status" sortOrder="10" formElement="checkbox">
+        <!-- Enable Product -->
+        <field name="status" sortOrder="0" formElement="checkbox">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="source" xsi:type="string">product</item>
@@ -120,7 +52,7 @@
             </argument>
             <settings>
                 <dataType>boolean</dataType>
-                <label translate="true">Status</label>
+                <label translate="true">Enable Product</label>
                 <dataScope>status</dataScope>
             </settings>
             <formElements>
@@ -136,14 +68,160 @@
             </formElements>
         </field>
 
-        <!-- Attributes -->
-        <field name="attributes" formElement="select">
+        <!-- Name -->
+        <field name="name" sortOrder="1" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">product</item>
+                </item>
+            </argument>
             <settings>
                 <validation>
-                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                    <!--                    <rule name="required-entry" xsi:type="boolean">true</rule>-->
                 </validation>
                 <dataType>text</dataType>
-                <label translate="true">Attribute</label>
+                <label translate="true">Name</label>
+                <dataScope>name</dataScope>
+            </settings>
+        </field>
+
+        <!-- SKU -->
+        <field name="sku" sortOrder="2" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">product</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <!--                    <rule name="required-entry" xsi:type="boolean">true</rule>-->
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">SKU</label>
+                <dataScope>name</dataScope>
+            </settings>
+        </field>
+
+        <!-- Price -->
+        <field name="price" sortOrder="3" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">category</item>
+                    <item name="placeholder" xsi:type="string">$</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <!--                    <rule name="required-entry" xsi:type="boolean">true</rule>-->
+                    <rule name="validate-number" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>number</dataType>
+                <additionalClasses>
+                    <class name="admin__field-small">true</class>
+                </additionalClasses>
+                <label translate="true">Price</label>
+            </settings>
+        </field>
+
+        <!-- Tax Class-->
+        <field name="tax_class" sortOrder="4" formElement="select">
+            <settings>
+                <validation>
+                    <!--                    <rule name="required-entry" xsi:type="boolean">true</rule>-->
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Tax Class</label>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options>
+                            <option name="1" xsi:type="array">
+                                <item name="value" xsi:type="string">None</item>
+                                <item name="label" xsi:type="string">None</item>
+                            </option>
+                            <option name="2" xsi:type="array">
+                                <item name="value" xsi:type="string">Taxable Goods</item>
+                                <item name="label" xsi:type="string">Taxable Goods</item>
+                            </option>
+                        </options>
+                        <caption translate="true">Select options</caption>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+
+        <!-- Quantity-->
+        <field name="quantity" sortOrder="5" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">product</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="validate-number" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>number</dataType>
+                <additionalClasses>
+                    <class name="admin__field-small">true</class>
+                </additionalClasses>
+                <label translate="true">Quantity</label>
+            </settings>
+        </field>
+
+        <!-- Stock Status-->
+        <field name="stock_status" sortOrder="6" formElement="checkbox">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">product</item>
+                    <item name="default" xsi:type="number">1</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Stock Status</label>
+                <dataScope>stock_status</dataScope>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="number">0</map>
+                            <map name="true" xsi:type="number">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+
+        <!-- Categories -->
+        <field name="categories" sortOrder="7" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">product</item>
+                    <item name="placeholder" xsi:type="string">Enter Category Product</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <!--                    <rule name="required-entry" xsi:type="boolean">true</rule>-->
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Category</label>
+                <dataScope>categories</dataScope>
+            </settings>
+        </field>
+
+        <!-- Attributes -->
+        <field name="attribute" sortOrder="8" formElement="select">
+            <settings>
+                <validation>
+                    <!--                    <rule name="required-entry" xsi:type="boolean">true</rule>-->
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Attribute Set</label>
             </settings>
             <formElements>
                 <select>
@@ -174,17 +252,57 @@
                                 <item name="label" xsi:type="string">3XL</item>
                             </option>
                         </options>
-                        <caption translate="true">-- Please Select --</caption>
+                        <caption translate="true">Select options</caption>
                     </settings>
                 </select>
             </formElements>
         </field>
 
+        <!-- Visibility -->
+        <field name="visibility" sortOrder="9" formElement="select">
+            <settings>
+                <validation>
+                    <!--                    <rule name="required-entry" xsi:type="boolean">true</rule>-->
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Visibility</label>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options>
+                            <option name="1" xsi:type="array">
+                                <item name="value" xsi:type="string">Not Visible Individually</item>
+                                <item name="label" xsi:type="string">Not Visible Individually</item>
+                            </option>
+                            <option name="2" xsi:type="array">
+                                <item name="value" xsi:type="string">Catalog</item>
+                                <item name="label" xsi:type="string">Catalog</item>
+                            </option>
+                            <option name="3" xsi:type="array">
+                                <item name="value" xsi:type="string">Search</item>
+                                <item name="label" xsi:type="string">Search</item>
+                            </option>
+                            <option name="4" xsi:type="array">
+                                <item name="value" xsi:type="string">Catalog,Search</item>
+                                <item name="label" xsi:type="string">Catalog,Search</item>
+                            </option>
+                        </options>
+                        <caption translate="true">Select options</caption>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+
+        <!-- Set Product as New From -->
+
+        <!-- Country of Manufacture -->
+
         <!-- Thumbnail-->
-        <field name="thumbnail" sortOrder="30" formElement="imageUploader">
+        <field name="thumbnail" sortOrder="60" formElement="imageUploader">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
-                    <item name="source" xsi:type="string">brand</item>
+                    <item name="source" xsi:type="string">product</item>
                 </item>
             </argument>
             <settings>
@@ -193,17 +311,20 @@
                 <label translate="true">Image</label>
                 <visible>true</visible>
                 <required>false</required>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
             </settings>
             <formElements>
                 <imageUploader>
                     <settings>
                         <required>false</required>
                         <uploaderConfig>
-                            <param xsi:type="url" name="url" path="catalog/category_image/upload"/>
+                            <param xsi:type="url" name="url" path="source_app/product/upload"/>
                         </uploaderConfig>
-                        <previewTmpl>Magento_Catalog/image-preview</previewTmpl>
+                        <previewTmpl>Source_App/image-preview</previewTmpl>
                         <openDialogTitle>Media Gallery</openDialogTitle>
-                        <initialMediaGalleryOpenSubpath>catalog/category</initialMediaGalleryOpenSubpath>
+                        <initialMediaGalleryOpenSubpath>source/category</initialMediaGalleryOpenSubpath>
                         <allowedExtensions>jpg jpeg gif png</allowedExtensions>
                     </settings>
                 </imageUploader>

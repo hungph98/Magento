@@ -3,24 +3,29 @@
 namespace Source\App\Controller\Adminhtml\Product;
 
 use Magento\Framework\Controller\ResultFactory;
-class Upload extends \Magento\Backend\App\Action
-{
-    public $imageUploader;
+use Magento\Backend\App\Action\Context;
+use Source\App\Model\ImageUploader;
+use Magento\Backend\App\Action;
 
-    public function __construct(\Magento\Backend\App\Action\Context $context, \Source\App\Model\ImageUploader $imageUploader) {
+class Upload extends Action
+{
+    protected ImageUploader $imageUploader;
+
+    public function __construct(Context $context, ImageUploader $imageUploader)
+    {
         parent::__construct($context);
         $this->imageUploader = $imageUploader;
     }
 
-    public function _isAllowed()
+    public function _isAllowed(): bool
     {
-        return $this->_authorization->isAllowed('Source_App::label');
+        return $this->_authorization->isAllowed('Source_App::upload');
     }
 
     public function execute()
     {
         try {
-            $result = $this->imageUploader->saveFileToTmpDir('image');
+            $result = $this->imageUploader->saveFileToTmpDir('thumbnail');
             $result['cookie'] = [
                 'name' => $this->_getSession()->getName(),
                 'value' => $this->_getSession()->getSessionId(),
@@ -31,7 +36,6 @@ class Upload extends \Magento\Backend\App\Action
         } catch (\Exception $e) {
             $result = ['error' => $e->getMessage(), 'errorcode' => $e->getCode()];
         }
-
         return $this->resultFactory->create(ResultFactory::TYPE_JSON)->setData($result);
     }
 }
