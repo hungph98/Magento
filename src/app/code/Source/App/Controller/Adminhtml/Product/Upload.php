@@ -24,15 +24,10 @@ class Upload extends Action
 
     public function execute()
     {
+        $imageId = $this->_request->getParam('param_name', 'thumbnail');
+
         try {
-            $result = $this->imageUploader->saveFileToTmpDir('thumbnail');
-            $result['cookie'] = [
-                'name' => $this->_getSession()->getName(),
-                'value' => $this->_getSession()->getSessionId(),
-                'lifetime' => $this->_getSession()->getCookieLifetime(),
-                'path' => $this->_getSession()->getCookiePath(),
-                'domain' => $this->_getSession()->getCookieDomain(),
-            ];
+            $result = $this->imageUploader->saveFileToTmpDir($imageId);
         } catch (\Exception $e) {
             $result = ['error' => $e->getMessage(), 'errorcode' => $e->getCode()];
         }

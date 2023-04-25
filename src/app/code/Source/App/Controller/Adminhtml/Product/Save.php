@@ -27,6 +27,7 @@ class Save extends Action
 
     /**
      * @throws LocalizedException
+     * @var ImageUploader
      */
     public function execute()
     {
@@ -41,31 +42,8 @@ class Save extends Action
                 return $resultRedirect->setPath('*/*/');
             }
 
-            if ($model->getId()) {
-                $pageData = $this->productFactory->create();
-                $pageData->load($model->getId());
-                if (isset($data['thumbnail'][0]['name'])) {
-                    $imageName1 = $pageData->getThumbnail();
-                    $imageName2 = $data['thumbnail'][0]['name'];
-                    if ($imageName1 != $imageName2) {
-                        $imageUrl = $data['thumbnail'][0]['url'];
-                        $imageName = $data['thumbnail'][0]['name'];
-                        $data['thumbnail'] = $this->imageUploaderModel->saveMediaImage($imageName, $imageUrl);
-                    } else {
-                        $data['thumbnail'] = $data['thumbnail'][0]['name'];
-                    }
-                } else {
-                    $data['thumbnail'] = '';
-                }
-            } else {
-                if (isset($data['thumbnail'][0]['name'])) {
-                    $imageUrl = $data['thumbnail'][0]['url'];
-                    $imageName = $data['thumbnail'][0]['name'];
-                    $data['thumbnail'] = $this->imageUploaderModel->saveMediaImage($imageName, $imageUrl);
-                }
-            }
-
             $model->setData($data);
+            $model = $this->imageData($model, $data);
 
             try {
                 $model->save();
@@ -86,5 +64,37 @@ class Save extends Action
             return $resultRedirect->setPath('*/*/edit', ['product_id' => $this->getRequest()->getParam('product_id')]);
         }
         return $resultRedirect->setPath('*/*/');
+    }
+
+    /**
+     * @throws LocalizedException
+     */
+    public function imageData($model, $data)
+    {
+        if ($model->getId()) {
+            $pageData = $this->productFactory->create();
+            $pageData->load($model->getId());
+            if (isset($data['thumbnail'][0]['name'])) {
+                $imageName1 = $pageData->getThumbnail();
+                $imageName2 = $data['thumbnail'][0]['name'];
+                if ($imageName1 != $imageName2) {
+                    $imageUrl = $data['thumbnail'][0]['url'];
+                    $imageName = $data['thumbnail'][0]['name'];
+                    $data['thumbnail'] = $this->imageUploaderModel->saveMediaImage($imageName, $imageUrl);
+                } else {
+                    $data['thumbnail'] = $data['thumbnail'][0]['name'];
+                }
+            } else {
+                $data['thumbnail'] = '';
+            }
+        } else {
+            if (isset($data['thumbnail'][0]['name'])) {
+                $imageUrl = $data['thumbnail'][0]['url'];
+                $imageName = $data['thumbnail'][0]['name'];
+                $data['thumbnail'] = $this->imageUploaderModel->saveMediaImage($imageName, $imageUrl);
+            }
+        }
+        $model->setData($data);
+        return $model;
     }
 }

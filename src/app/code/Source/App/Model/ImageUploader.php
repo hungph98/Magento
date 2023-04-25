@@ -17,7 +17,7 @@ use Psr\Log\LoggerInterface;
 
 class ImageUploader
 {
-    const BASE_TMP_PATH = "source_app/product/";
+    const BASE_TMP_PATH = "source_app/tmp/product/";
     const BASE_PATH = "source_app/product/";
     const ALLOWED_EXTENSIONS = ['jpg', 'jpeg', 'png'];
 
