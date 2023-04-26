@@ -3,7 +3,9 @@
 namespace Source\App\Controller\Adminhtml\Product;
 
 use Magento\Framework\Controller\ResultFactory;
-class Add extends \Magento\Backend\App\Action
+use Magento\Backend\App\Action;
+
+class Add extends Action
 {
     public function execute()
     {

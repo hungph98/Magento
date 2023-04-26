@@ -5,7 +5,6 @@ namespace Source\App\Ui\Listing\Colums;
 use Magento\Framework\View\Element\UiComponentFactory;
 use Magento\Framework\View\Element\UiComponent\ContextInterface;
 use Magento\Ui\Component\Listing\Columns\Column;
-use Magento\Catalog\Helper\Image;
 use Magento\Framework\UrlInterface;
 
 class Thumbnail extends Column

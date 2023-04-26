@@ -2,7 +2,12 @@
 
 namespace Source\App\Ui\Listing\Colums;
 
-class   Action extends \Magento\Ui\Component\Listing\Columns\Column
+use Magento\Framework\UrlInterface;
+use Magento\Framework\View\Element\UiComponent\ContextInterface;
+use Magento\Ui\Component\Listing\Columns\Column;
+use Magento\Framework\View\Element\UiComponentFactory;
+
+class   Action extends Column
 {
     protected $urlBuilder;
 
@@ -10,9 +15,9 @@ class   Action extends \Magento\Ui\Component\Listing\Columns\Column
     const URL_DELETE_PRODUCT_PATH = 'source_app/product/delete';
 
     public function __construct(
-        \Magento\Framework\UrlInterface $urlBuilder,
-        \Magento\Framework\View\Element\UiComponent\ContextInterface $context,
-        \Magento\Framework\View\Element\UiComponentFactory $uiComponentFactory,
+        UrlInterface $urlBuilder,
+        ContextInterface $context,
+        UiComponentFactory $uiComponentFactory,
         array $components = [],
         array $data = []
     ) {

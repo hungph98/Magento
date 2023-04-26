@@ -8,14 +8,14 @@ use Source\App\Model\Product;
 
 class Delete extends Action
 {
-    protected $productModel;
+    protected Product $productModel;
 
     public function __construct(Action\Context $context, Product $productModel) {
         parent::__construct($context);
         $this->productModel = $productModel;
     }
 
-    protected function _isAllowed()
+    protected function _isAllowed(): bool
     {
         return $this->_authorization->isAllowed('Source_App::product_delete');
     }

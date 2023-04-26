@@ -8,7 +8,7 @@ use Source\App\Model\ResourceModel\Product as ProductResource;
 
 class Product extends AbstractModel
 {
-    protected function _construct()
+    protected function _construct(): void
     {
         $this->_init(ProductResource::class);
     }

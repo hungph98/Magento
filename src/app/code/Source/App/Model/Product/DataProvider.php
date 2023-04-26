@@ -51,18 +51,19 @@ class DataProvider extends AbstractDataProvider
 
         $items = $this->collection->getItems();
         foreach ($items as $model) {
-            $this->loadedData[$model->getId()] = $model->getData();
             $image = [];
-            if($model->getThumbnail()) {
-                $image['thumbnail'][0]['name'] = $model->getThumbnail();
-                $image['thumbnail'][0]['url'] = $this->getMediaUrl().$model->getThumbnail();
-                $image['thumbnail'][0]['type'] = 'image';
-                $fullData = $this->loadedData;
-                $this->loadedData[$model->getId()] = array_merge($fullData[$model->getId()], (array)isset($image));
+            $imageName = $model->getThumbnail();
+            if ($imageName) {
+                $image[0]['name'] = $imageName;
+                $image[0]['url'] = $this->getMediaUrl().$imageName;
+                $image[0]['type'] = 'image';
             }
         }
 
         $product = $this->getCurrentPost();
+        if ($product->getId() !== null) {
+            $product->setThumbnail($image);
+        }
         $this->loadedData[$product->getId()] = $product->getData();
 
         return $this->loadedData;
@@ -91,6 +92,6 @@ class DataProvider extends AbstractDataProvider
      */
     public function getMediaUrl(): string
     {
-        return $this->storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA) . 'source_app/tmp/product/';
+        return $this->storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA) . 'source_app/product/';
     }
 }

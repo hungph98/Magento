@@ -5,13 +5,13 @@ namespace Source\App\Controller\Adminhtml\Product;
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\App\Request\DataPersistorInterface;
+use Magento\Framework\Controller\Result\Redirect;
 use Magento\Framework\Exception\LocalizedException;
 use Source\App\Model\ProductFactory;
 use Source\App\Model\ImageUploader;
 
 class Save extends Action
 {
-
     protected $dataPersistor;
     protected $productFactory;
     protected $cacheManager;
@@ -26,17 +26,17 @@ class Save extends Action
     }
 
     /**
+     * @return Redirect
      * @throws LocalizedException
-     * @var ImageUploader
      */
-    public function execute()
+    public function execute(): Redirect
     {
         $data = $this->getRequest()->getPostValue();
         $resultRedirect = $this->resultRedirectFactory->create();
         if ($data) {
             $id = $this->getRequest()->getParam('product_id');
 
-            $model = $this->_objectManager->create(\Source\App\Model\Product::class)->load($id);
+            $model = $this->_objectManager->get(\Source\App\Model\Product::class)->load($id);
             if (!$model->getId() && $id) {
                 $this->messageManager->addErrorMessage(__('This Product no longer exists.'));
                 return $resultRedirect->setPath('*/*/');
