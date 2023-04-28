@@ -1,0 +1,77 @@
+<?php
+/** @var \Source\App\Block\Frontend\Product\Index $block */
+if ($valueConfig = 1) :
+    $product = $block->listProductCollection();
+endif;
+?>
+<h2>List Product</h2>
+<a href="<?php echo $block->getURL('source_app/product'); ?>"></a>
+<ul class="list-product">
+    <?php if (!!$product) : ?>
+        <?php foreach ($product as $key => $value) : ?>
+            <?php
+            $urlById = $block->getURL('source_app/product/detail') . "id/" . $value['product_id'];
+            $name = $value['name'];
+            $image = $value['thumbnail'];
+            $urlImage = ($block->getBaseUrl()) . 'media/source_app/product/' . $image;
+            $price = $value['price'];
+            ?>
+            <li class="list-item">
+                <div class="item">
+                    <a href="<?php echo $urlById; ?>" class="item-link">
+                        <div class="image">
+                            <img src="<?php echo $urlImage; ?>" alt="">
+                        </div>
+                        <p class="name"><?php echo $name; ?></p>
+                        <p class="price">As low as $ <?php echo $price; ?></p>
+                    </a>
+                    <button>Add to Cart</button>
+                </div>
+            </li>
+        <?php endforeach; ?>
+    <?php endif; ?>
+</ul>
+
+<style>
+    .list-product {
+        list-style: none;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-items: center;
+        align-content: stretch;
+    }
+
+    .item {
+        transition: box-shadow .3s;
+        width: 250px;
+        margin: 50px;
+        border-radius: 5px;
+        background: #fff;
+    }
+
+    .name {
+        margin-top: 20px;
+        color: black;
+        font-weight: bold;
+        font-size: 20px;
+    }
+
+    p, button {
+        margin-left: 10px;
+    }
+
+    button {
+        margin-bottom: 20px;
+    }
+
+    .item:hover, .item-link:hover {
+        box-shadow: 0 0 20px rgba(33, 33, 33, .5);
+        text-decoration: none;
+    }
+</style>
+
+<script>
+
+</script>

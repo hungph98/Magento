@@ -1,0 +1,346 @@
+<?php
+
+use Source\App\Block\Frontend\Product\DetailProduct;
+
+const PARAM_NAME_BASE64_URL = 'r64';
+const PARAM_NAME_URL_ENCODED = 'uenc';
+
+/** @var DetailProduct $block */
+
+$product = $block->showProductDetail();
+?>
+<?php
+$product_id = $product->getData('product_id');
+$productInfo = $block->getProductById($product_id);
+$product_name = $productInfo->getName();
+$product_price = number_format(round($productInfo->getPrice()), 2);
+$product_url = $productInfo->getBaseUrl();
+$product_image = ($block->getBaseUrl()) . 'media/source_app/product/' . ($productInfo->getData('thumbnail'));
+$product_status = $productInfo->getStatus();
+$product_sku = $productInfo->getSku();
+$product_attribute = $productInfo->getAttribute();
+?>
+<div class="row">
+    <div class="product-media">
+        <a class="product-item" href="<?php echo $block->getBaseUrl() . $product_name . '.html'; ?>">
+            <div class="p-image">
+                <img src="<?php echo $product_image; ?>" alt="" style="width: 100%">
+            </div>
+        </a>
+    </div>
+    <div class="product-info">
+        <div class="p-title-wrapper">
+            <h2 class="p-title">
+                <?php echo $product_name; ?>
+            </h2>
+        </div>
+        <div class="review-actions">
+            <a href="">
+                Be the first to review this product
+            </a>
+        </div>
+        <div class="p-info-price">
+            <div class="p-price">
+                <span class="p-detail-price">
+                    <span style="font-size: 20px">As low as</span>
+                    <strong style="font-size: 35px; font-weight: bold; margin-top: 8px;"><?php echo "$" . $product_price; ?></strong>
+                </span>
+                <span class="p-info-other">
+                    <span><?php echo $product_status; ?></span>
+                    <br>
+                    <span>SKU#: <?php echo $product_sku; ?></span>
+                </span>
+            </div>
+        </div>
+        <div class="p-add-form">
+            <div class="size">
+                <span style="font-weight: 700">Size</span>
+                <br>
+                <div>
+                    <div class="swatch-option text" id="option-label-size-137-item-182" index="0" aria-checked="false"
+                         aria-describedby="option-label-size-137" tabindex="0" data-option-type="0" data-option-id="182"
+                         data-option-label="XS" aria-label="XS" role="option" data-thumb-width="110"
+                         data-thumb-height="90" data-option-tooltip-value="XS"><?php echo $product_attribute; ?>
+                    </div>
+                </div>
+            </div>
+            <div class="color">
+                <span style="font-weight: 700">Color</span><br>
+                <div>
+                    <div class="swatch-option color" id="option-label-color-93-item-4" index="0" aria-checked="false"
+                         aria-describedby="option-label-color-93" tabindex="0" data-option-type="1" data-option-id="4"
+                         data-option-label="Black" aria-label="Black" role="option" data-thumb-width="110"
+                         data-thumb-height="90" data-option-tooltip-value="#000000"
+                         style="background: #000000 no-repeat center; background-size: initial;">
+                    </div>
+                    <div class="swatch-option color" id="option-label-color-93-item-5" index="1" aria-checked="false"
+                         aria-describedby="option-label-color-93" tabindex="0" data-option-type="1" data-option-id="5"
+                         data-option-label="Blue" aria-label="Blue" role="option" data-thumb-width="110"
+                         data-thumb-height="90" data-option-tooltip-value="#1857f7"
+                         style="background: #1857f7 no-repeat center; background-size: initial;">
+                    </div>
+                    <div class="swatch-option color" id="option-label-color-93-item-11" index="2" aria-checked="false"
+                         aria-describedby="option-label-color-93" tabindex="0" data-option-type="1" data-option-id="11"
+                         data-option-label="Orange" aria-label="Orange" role="option" data-thumb-width="110"
+                         data-thumb-height="90" data-option-tooltip-value="#eb6703"
+                         style="background: #eb6703 no-repeat center; background-size: initial;">
+                    </div>
+                </div>
+            </div>
+            <div class="quantity">
+                <span style="font-weight: 700">Quantity</span><br>
+                <div class="input-qty" style="width: 54px">
+                    <input type="number" name="qty" id="qty" min="0" value="1" title="Qty" class="input-text qty"
+                           data-validate="{&quot;required-number&quot;:true,&quot;validate-item-quantity&quot;:{&quot;maxAllowed&quot;:10000}}">
+                </div>
+            </div>
+            <div class="add-to-cart">
+                <!--                --><?php //$postParams = $block->getAddToCartPostParams($product); ?>
+                <!--                <form data-role="tocart-form" action="--><?php ///* @escapeNotVerified */
+                //                echo $postParams['action']; ?><!--" method="post">-->
+                <!--                    <input type="hidden" name="product" value="--><?php ///* @escapeNotVerified */
+                //                    echo $postParams['data']['product']; ?><!--">-->
+                <!--                    <input type="hidden" name="--><?php ///* @escapeNotVerified */
+                //                    echo Action::PARAM_NAME_URL_ENCODED; ?><!--" value="-->
+                <!--                --><?php ///* @escapeNotVerified */
+                //                    echo $postParams['data'][Action::PARAM_NAME_URL_ENCODED]; ?><!--">-->
+                <!--                    --><?php //echo $block->getBlockHtml('formkey') ?>
+                <!--                    <button type="submit" title="-->
+                <!--                --><?php //echo $block->escapeHtml(__('Add to Cart')); ?><!--"-->
+                <!--                            class="action tocart primary">-->
+                <!--                                                <span>--><?php ///* @escapeNotVerified */
+                //                                                    echo __('Add to Cart') ?><!--</span>-->
+                <!--                    </button>-->
+                <!--                </form>-->
+            </div>
+            <div class="product-social-links">
+                <div class="product-addto-links" data-role="add-to-links">
+                    <a href="#" class="action towishlist"
+                       data-post="{&quot;action&quot;:&quot;https:\/\/project.test\/wishlist\/index\/add\/&quot;,&quot;data&quot;:{&quot;product&quot;:441,&quot;uenc&quot;:&quot;aHR0cHM6Ly9wcm9qZWN0LnRlc3QvcHJvdGV1cy1maXRuZXNzLWphY2tzaGlydC5odG1s&quot;}}"
+                       data-action="add-to-wishlist"><span>Add to Wish List</span></a>
+                    <a href="#"
+                       data-post="{&quot;action&quot;:&quot;https:\/\/project.test\/catalog\/product_compare\/add\/&quot;,&quot;data&quot;:{&quot;product&quot;:&quot;441&quot;,&quot;uenc&quot;:&quot;aHR0cHM6Ly9wcm9qZWN0LnRlc3QvcHJvdGV1cy1maXRuZXNzLWphY2tzaGlydC5odG1s&quot;}}"
+                       data-role="add-to-links" class="action tocompare"><span>Add to Compare</span></a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="product data items tab-reviews"
+     data-mage-init='{"mage/tabs": {"openedState": "active", "animate": {"duration": 100}, "active": 1, "disabled": [3], "disabledState": "disabled"}}'>
+    <div class="item title" data-role="collapsible">
+        <a class="switch" data-toggle="trigger" href="#tab-detail">Details</a>
+    </div>
+    <div id="tab-detail" class="item content" data-role="content">
+        <p>
+            Part jacket, part shirt, the Proteus Fitness Jackshirt makes an ideal companion for outdoor training,
+            camping or
+            loafing on crisp days. Natural Cocona® technology brings breathable comfort and increased dryness along with
+            UV
+            protection and odor management. The drop-tail hem provides extra coverage when you're riding a bike or
+            replacing
+            a sink valve.
+        </p>
+        <ul>
+            <li>1/4 zip. Stand-up collar.</li>
+            <li>Machine wash/dry.</li>
+            <li>Quilted inner layer.</li>
+        </ul>
+    </div>
+    <div class="item title" data-role="collapsible">
+        <a class="switch" data-toggle="trigger" href="#tab-information">More Information</a>
+    </div>
+    <div id="tab-information" class="item content" data-role="content">Tab more information</div>
+    <div class="item title" data-role="collapsible">
+        <a class="switch" data-toggle="trigger" href="#tab-reviews">Reviews</a>
+    </div>
+    <div id="tab-reviews" class="item content" data-role="content">
+        <div class="block-content">
+            <form action="https://project.test/review/product/post/id/441/" class="review-form" method="post"
+                  id="review-form" data-role="product-review-form" data-bind="scope: 'review-form'"
+                  novalidate="novalidate">
+                <input name="form_key" type="hidden" value="x9P14j4CPNLgQKDz">
+                <fieldset class="fieldset review-fieldset" data-hasrequired="* Required Fields">
+                    <legend class="legend review-legend">
+                        <span>You're reviewing:</span>
+                        <strong><?php echo $product_name; ?></strong>
+                    </legend>
+                    <br>
+                    <span id="input-message-box"></span>
+                    <fieldset class="field required review-field-ratings">
+                        <legend class="label"><span>Your Rating</span></legend>
+                        <br>
+                        <div class="control">
+                            <div class="nested" id="product-review-table">
+                                <div class="field choice review-field-rating">
+                                    <label class="label" id="Rating_rating_label"><span>Rating</span></label>
+                                    <div class="control review-control-vote">
+                                        <input type="radio" name="ratings[4]" id="Rating_1" value="16" class="radio"
+                                               data-validate="{'rating-required':true}"
+                                               aria-labelledby="Rating_rating_label Rating_1_label"
+                                               aria-required="true">
+                                        <label class="rating-1" for="Rating_1" title="1 star" id="Rating_1_label">
+                                            <span>1 star</span>
+                                        </label>
+                                        <input type="radio" name="ratings[4]" id="Rating_2" value="17" class="radio"
+                                               data-validate="{'rating-required':true}"
+                                               aria-labelledby="Rating_rating_label Rating_2_label"
+                                               aria-required="true">
+                                        <label class="rating-2" for="Rating_2" title="2 stars" id="Rating_2_label">
+                                            <span>2 stars</span>
+                                        </label>
+                                        <input type="radio" name="ratings[4]" id="Rating_3" value="18" class="radio"
+                                               data-validate="{'rating-required':true}"
+                                               aria-labelledby="Rating_rating_label Rating_3_label"
+                                               aria-required="true">
+                                        <label class="rating-3" for="Rating_3" title="3 stars" id="Rating_3_label">
+                                            <span>3 stars</span>
+                                        </label>
+                                        <input type="radio" name="ratings[4]" id="Rating_4" value="19" class="radio"
+                                               data-validate="{'rating-required':true}"
+                                               aria-labelledby="Rating_rating_label Rating_4_label"
+                                               aria-required="true">
+                                        <label class="rating-4" for="Rating_4" title="4 stars" id="Rating_4_label">
+                                            <span>4 stars</span>
+                                        </label>
+                                        <input type="radio" name="ratings[4]" id="Rating_5" value="20" class="radio"
+                                               data-validate="{'rating-required':true}"
+                                               aria-labelledby="Rating_rating_label Rating_5_label"
+                                               aria-required="true">
+                                        <label class="rating-5" for="Rating_5" title="5 stars" id="Rating_5_label">
+                                            <span>5 stars</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="hidden" name="validate_rating" class="validate-rating" value=""
+                                   aria-required="true">
+                        </div>
+                    </fieldset>
+                    <div class="field review-field-nickname required">
+                        <label for="nickname_field" class="label"><span>Nickname</span></label>
+                        <div class="control">
+                            <input type="text" name="nickname" id="nickname_field" class="input-text"
+                                   data-validate="{required:true}" data-bind="value: nickname()" aria-required="true">
+                        </div>
+                    </div>
+                    <div class="field review-field-summary required">
+                        <label for="summary_field" class="label"><span>Summary</span></label>
+                        <div class="control">
+                            <input type="text" name="title" id="summary_field" class="input-text"
+                                   data-validate="{required:true}" data-bind="value: review().title"
+                                   aria-required="true">
+                        </div>
+                    </div>
+                    <div class="field review-field-text required">
+                        <label for="review_field" class="label"><span>Review</span></label>
+                        <div class="control">
+                            <textarea name="detail" id="review_field" cols="5" rows="3" data-validate="{required:true}"
+                                      data-bind="value: review().detail" aria-required="true"></textarea>
+                        </div>
+                    </div>
+                </fieldset>
+                <div class="actions-toolbar review-form-actions">
+                    <div class="primary actions-primary">
+                        <button type="submit" class="action submit primary"><span>Submit Review</span></button>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<style>
+    .row {
+        margin-bottom: 50px;
+    }
+
+    .product-media {
+        float: left;
+        width: 50%;
+        margin-right: 5%;
+    }
+
+    .product-info {
+        float: right;
+        width: 47%;
+    }
+
+    .p-image {
+        width: 90%;
+    }
+
+    .row {
+        display: flex;
+    }
+
+    .p-title {
+        margin-top: 0;
+        font-size: 40px;
+        font-weight: 300;
+        line-height: 1.1;
+        font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    }
+
+    .p-info-price {
+        color: #575757;
+        border-bottom: 1px solid #c1c1c1;
+        display: table;
+        margin-top: 30px;
+        margin-bottom: 15px;
+        width: 100%;
+    }
+
+    .p-detail-price {
+        margin-bottom: 20px;
+        line-height: 1.1;
+        font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        display: grid;
+    }
+
+    .p-price {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .p-add-form {
+        margin-top: 50px;
+        display: grid;
+    }
+
+    .swatch-option {
+        margin-top: 10px;
+    }
+
+    .color {
+        margin-top: 10px;
+    }
+
+    .qty {
+        width: 54px;
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    .add-to-cart {
+        margin-top: 20px;
+    }
+
+    .product-social-links {
+        margin-top: 50px;
+    }
+
+    .product-addto-links {
+        display: flex;
+    }
+
+    .block-content {
+        width: 50%;
+    }
+</style>
+
+<script>
+
+</script>
