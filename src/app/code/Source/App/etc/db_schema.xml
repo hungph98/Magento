@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
-    <!-- Table Product -->
+    <!-- Table Frontend -->
     <table name="product" resource="default" engine="innodb" comment="Blog Post Table">
         <column xsi:type="smallint" name="product_id" unsigned="false" padding="5" nullable="false" identity="true"/>
         <column xsi:type="varchar" name="thumbnail" nullable="true" length="255"/>
         <column xsi:type="varchar" name="name" nullable="true" length="255"/>
         <column xsi:type="text" name="categories" nullable="true"/>
         <column xsi:type="text" name="sku" nullable="true"/>
+        <column xsi:type="varchar" name="websites" nullable="true" length="255"/>
+        <column xsi:type="varchar" name="type" nullable="true" length="255"/>
         <column xsi:type="smallint" name="status" nullable="true" padding="5" default="1"/>
         <column xsi:type="smallint" name="stock_status" nullable="true" padding="5" default="1"/>
         <column xsi:type="smallint" name="visibility" nullable="true" default="1"/>

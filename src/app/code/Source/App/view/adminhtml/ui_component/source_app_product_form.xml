@@ -42,7 +42,7 @@
             <label>General</label>
         </settings>
 
-        <!-- Enable Product -->
+        <!-- Enable Frontend -->
         <field name="status" sortOrder="0" formElement="checkbox">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
@@ -112,7 +112,6 @@
             </argument>
             <settings>
                 <validation>
-                    <rule name="required-entry" xsi:type="boolean">true</rule>
                     <rule name="validate-number" xsi:type="boolean">true</rule>
                 </validation>
                 <dataType>number</dataType>
@@ -126,9 +125,6 @@
         <!-- Tax Class-->
         <field name="tax_class" sortOrder="4" formElement="select">
             <settings>
-                <validation>
-                    <rule name="required-entry" xsi:type="boolean">true</rule>
-                </validation>
                 <dataType>text</dataType>
                 <label translate="true">Tax Class</label>
             </settings>
@@ -205,9 +201,6 @@
                 </item>
             </argument>
             <settings>
-                <validation>
-                    <rule name="required-entry" xsi:type="boolean">true</rule>
-                </validation>
                 <dataType>text</dataType>
                 <label translate="true">Category</label>
                 <dataScope>categories</dataScope>
@@ -217,9 +210,6 @@
         <!-- Attributes -->
         <field name="attribute" sortOrder="8" formElement="select">
             <settings>
-                <validation>
-                    <rule name="required-entry" xsi:type="boolean">true</rule>
-                </validation>
                 <dataType>text</dataType>
                 <label translate="true">Attribute Set</label>
             </settings>
@@ -261,9 +251,6 @@
         <!-- Visibility -->
         <field name="visibility" sortOrder="9" formElement="select">
             <settings>
-                <validation>
-                    <rule name="required-entry" xsi:type="boolean">true</rule>
-                </validation>
                 <dataType>text</dataType>
                 <label translate="true">Visibility</label>
             </settings>
@@ -294,10 +281,15 @@
             </formElements>
         </field>
 
-        <!-- Set Product as New From -->
+        <!-- Set Frontend as New From -->
 
         <!-- Country of Manufacture -->
+    </fieldset>
 
+    <fieldset name="image_and_video">
+        <settings>
+            <label>Images And Videos</label>
+        </settings>
         <!-- Thumbnail-->
         <field name="thumbnail" sortOrder="60" formElement="imageUploader">
             <argument name="data" xsi:type="array">
@@ -311,9 +303,6 @@
                 <label translate="true">Image</label>
                 <visible>true</visible>
                 <required>false</required>
-                <validation>
-                    <rule name="required-entry" xsi:type="boolean">true</rule>
-                </validation>
             </settings>
             <formElements>
                 <imageUploader>

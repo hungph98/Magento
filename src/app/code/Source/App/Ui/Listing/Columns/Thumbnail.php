@@ -1,6 +1,6 @@
 <?php
 
-namespace Source\App\Ui\Listing\Colums;
+namespace Source\App\Ui\Listing\Columns;
 
 use Magento\Framework\View\Element\UiComponentFactory;
 use Magento\Framework\View\Element\UiComponent\ContextInterface;

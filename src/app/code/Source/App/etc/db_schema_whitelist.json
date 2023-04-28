@@ -29,7 +29,8 @@
             "status": true,
             "quantity": true,
             "visibility": true,
-            "tax_class": true
+            "tax_class": true,
+            "websites": true
         },
         "constraint": {
             "PRIMARY": true

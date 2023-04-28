@@ -38,7 +38,7 @@ class Save extends Action
 
             $model = $this->_objectManager->get(\Source\App\Model\Product::class)->load($id);
             if (!$model->getId() && $id) {
-                $this->messageManager->addErrorMessage(__('This Product no longer exists.'));
+                $this->messageManager->addErrorMessage(__('This Frontend no longer exists.'));
                 return $resultRedirect->setPath('*/*/');
             }
 
@@ -47,7 +47,7 @@ class Save extends Action
 
             try {
                 $model->save();
-                $this->messageManager->addSuccessMessage(__('You saved the Product.'));
+                $this->messageManager->addSuccessMessage(__('You saved the Frontend.'));
                 $this->dataPersistor->clear('source_app_product');
 
                 if ($this->getRequest()->getParam('back')) {
@@ -57,7 +57,7 @@ class Save extends Action
             } catch (LocalizedException $e) {
                 $this->messageManager->addErrorMessage($e->getMessage());
             } catch (\Exception $e) {
-                $this->messageManager->addExceptionMessage($e, __('Something went wrong while saving the Product.'));
+                $this->messageManager->addExceptionMessage($e, __('Something went wrong while saving the Frontend.'));
             }
 
             $this->dataPersistor->set('source_app_product', $data);

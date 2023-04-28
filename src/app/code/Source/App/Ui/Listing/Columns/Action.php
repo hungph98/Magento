@@ -1,13 +1,13 @@
 <?php
 
-namespace Source\App\Ui\Listing\Colums;
+namespace Source\App\Ui\Listing\Columns;
 
 use Magento\Framework\UrlInterface;
 use Magento\Framework\View\Element\UiComponent\ContextInterface;
 use Magento\Ui\Component\Listing\Columns\Column;
 use Magento\Framework\View\Element\UiComponentFactory;
 
-class   Action extends Column
+class Action extends Column
 {
     protected $urlBuilder;
 

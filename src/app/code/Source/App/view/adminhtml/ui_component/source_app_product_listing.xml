@@ -49,26 +49,48 @@
         <columnsControls name="columns_controls"/>
         <filterSearch name="fulltext"/>
         <filters name="listing_filters"/>
-        <massaction name="listing_massaction">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="component" xsi:type="string">Magento_Ui/js/grid/tree-massactions</item>
-                </item>
-            </argument>
+        <massaction name="listing_massaction"
+                    component="Magento_Ui/js/grid/tree-massactions"
+                    class="\Magento\Catalog\Ui\Component\Product\MassAction">
             <action name="delete">
-                <argument name="data" xsi:type="array">
-                    <item name="config" xsi:type="array">
-                        <item name="type" xsi:type="string">delete</item>
-                        <item name="label" xsi:type="string" translate="true">Delete</item>
-                        <item name="url" xsi:type="url" path="source_app/product/massDelete"/>
-                        <item name="confirm" xsi:type="array">
-                            <item name="title" xsi:type="string" translate="true">Delete Product</item>
-                            <item name="message" xsi:type="string" translate="true">Are you sure you wan't to delete
-                                selected items?
-                            </item>
-                        </item>
-                    </item>
-                </argument>
+                <settings>
+                    <confirm>
+                        <message translate="true">Delete selected items?</message>
+                        <title translate="true">Delete items</title>
+                    </confirm>
+                    <url path="catalog/product/massDelete"/>
+                    <type>delete</type>
+                    <label translate="true">Delete</label>
+                </settings>
+            </action>
+            <action name="status">
+                <settings>
+                    <type>status</type>
+                    <label translate="true">Change status</label>
+                    <actions>
+                        <action name="0">
+                            <type>enable</type>
+                            <label translate="true">Enable</label>
+                            <url path="catalog/product/massStatus">
+                                <param name="status">1</param>
+                            </url>
+                        </action>
+                        <action name="1">
+                            <type>disable</type>
+                            <label translate="true">Disable</label>
+                            <url path="catalog/product/massStatus">
+                                <param name="status">2</param>
+                            </url>
+                        </action>
+                    </actions>
+                </settings>
+            </action>
+            <action name="attributes">
+                <settings>
+                    <url path="catalog/product_action_attribute/edit"/>
+                    <type>attributes</type>
+                    <label translate="true">Update attributes</label>
+                </settings>
             </action>
         </massaction>
         <paging name="listing_paging"/>
@@ -97,7 +119,8 @@
         </column>
 
         <!-- Thumbnail -->
-        <column name="thumbnail" class="\Source\App\Ui\Listing\Colums\Thumbnail" component="Magento_Ui/js/grid/columns/thumbnail" sortOrder="20">
+        <column name="thumbnail" class="\Source\App\Ui\Listing\Columns\Thumbnail"
+                component="Magento_Ui/js/grid/columns/thumbnail" sortOrder="10">
             <settings>
                 <altField>name</altField>
                 <hasPreview>1</hasPreview>
@@ -118,27 +141,36 @@
                         </item>
                     </item>
                     <item name="label" xsi:type="string" translate="true">Name</item>
-                    <item name="sortOrder" xsi:type="number">1</item>
+                    <item name="sortOrder" xsi:type="number">20</item>
                 </item>
             </argument>
         </column>
 
-        <!-- Category -->
-        <column name="categories">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="filter" xsi:type="string">text</item>
-                    <item name="editor" xsi:type="array">
-                        <item name="editorType" xsi:type="string">text</item>
-                        <item name="validation" xsi:type="array">
-                            <item name="required-entry" xsi:type="boolean">true</item>
-                        </item>
-                    </item>
-                    <item name="label" xsi:type="string" translate="true">Category</item>
-                    <item name="sortOrder" xsi:type="number">2</item>
-                </item>
-            </argument>
+        <column name="type" component="Magento_Ui/js/grid/columns/select" sortOrder="30">
+            <settings>
+                <!--                <options class="Source\App\Model\Frontend\Type"/>-->
+                <filter>select</filter>
+                <dataType>select</dataType>
+                <label translate="true">Type</label>
+            </settings>
         </column>
+
+        <!-- Category -->
+        <!--        <column name="categories">-->
+        <!--            <argument name="data" xsi:type="array">-->
+        <!--                <item name="config" xsi:type="array">-->
+        <!--                    <item name="filter" xsi:type="string">text</item>-->
+        <!--                    <item name="editor" xsi:type="array">-->
+        <!--                        <item name="editorType" xsi:type="string">text</item>-->
+        <!--                        <item name="validation" xsi:type="array">-->
+        <!--                            <item name="required-entry" xsi:type="boolean">true</item>-->
+        <!--                        </item>-->
+        <!--                    </item>-->
+        <!--                    <item name="label" xsi:type="string" translate="true">Category</item>-->
+        <!--                    <item name="sortOrder" xsi:type="number">30</item>-->
+        <!--                </item>-->
+        <!--            </argument>-->
+        <!--        </column>-->
 
         <!-- SKU-->
         <column name="sku">
@@ -152,12 +184,12 @@
                         </item>
                     </item>
                     <item name="label" xsi:type="string" translate="true">SKU</item>
-                    <item name="sortOrder" xsi:type="number">3</item>
+                    <item name="sortOrder" xsi:type="number">40</item>
                 </item>
             </argument>
         </column>
 
-        <!-- Enable Product -->
+        <!-- Enable Frontend -->
         <column name="status">
             <argument name="data" xsi:type="array">
                 <item name="options" xsi:type="array">
@@ -176,7 +208,7 @@
                     <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
                     <item name="dataType" xsi:type="string">select</item>
                     <item name="label" xsi:type="string" translate="true">Status</item>
-                    <item name="sortOrder" xsi:type="number">4</item>
+                    <item name="sortOrder" xsi:type="number">50</item>
                 </item>
             </argument>
         </column>
@@ -200,7 +232,7 @@
                     <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
                     <item name="dataType" xsi:type="string">select</item>
                     <item name="label" xsi:type="string" translate="true">Stock Status</item>
-                    <item name="sortOrder" xsi:type="number">5</item>
+                    <item name="sortOrder" xsi:type="number">60</item>
                 </item>
             </argument>
         </column>
@@ -232,26 +264,17 @@
                     <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
                     <item name="dataType" xsi:type="string">select</item>
                     <item name="label" xsi:type="string" translate="true">Visibility</item>
-                    <item name="sortOrder" xsi:type="number">6</item>
+                    <item name="sortOrder" xsi:type="number">70</item>
                 </item>
             </argument>
         </column>
 
         <!-- Price -->
-        <column name="price">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="filter" xsi:type="string">text</item>
-                    <item name="editor" xsi:type="array">
-                        <item name="editorType" xsi:type="string">number</item>
-                        <item name="validation" xsi:type="array">
-                            <item name="required-entry" xsi:type="boolean">true</item>
-                        </item>
-                    </item>
-                    <item name="label" xsi:type="string" translate="true">Price</item>
-                    <item name="sortOrder" xsi:type="number">7</item>
-                </item>
-            </argument>
+        <column name="price" class="\Source\App\Ui\Listing\Columns\Price" sortOrder="80">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">Price</label>
+            </settings>
         </column>
 
         <!-- Tax Class-->
@@ -273,7 +296,7 @@
                     <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
                     <item name="dataType" xsi:type="string">select</item>
                     <item name="label" xsi:type="string" translate="true">Tax Class</item>
-                    <item name="sortOrder" xsi:type="number">8</item>
+                    <item name="sortOrder" xsi:type="number">90</item>
                 </item>
             </argument>
         </column>
@@ -290,7 +313,7 @@
                         </item>
                     </item>
                     <item name="label" xsi:type="string" translate="true">Quantity</item>
-                    <item name="sortOrder" xsi:type="number">9</item>
+                    <item name="sortOrder" xsi:type="number">100</item>
                 </item>
             </argument>
         </column>
@@ -307,19 +330,38 @@
                         </item>
                     </item>
                     <item name="label" xsi:type="string" translate="true">Attribute</item>
-                    <item name="sortOrder" xsi:type="number">10</item>
+                    <item name="sortOrder" xsi:type="number">110</item>
                 </item>
             </argument>
         </column>
 
+        <column name="websites" class="\Source\App\Ui\Listing\Columns\Websites" sortOrder="120">
+            <settings>
+                <options class="Magento\Store\Model\ResourceModel\Website\Collection"/>
+                <dataType>text</dataType>
+                <label translate="true">Websites</label>
+            </settings>
+        </column>
+
+        <column name="updated_at"
+                class="Magento\Ui\Component\Listing\Columns\Date"
+                component="Magento_Ui/js/grid/columns/date"
+                sortOrder="130">
+            <settings>
+                <filter>dateRange</filter>
+                <dataType>date</dataType>
+                <label translate="true">Last Updated At</label>
+            </settings>
+        </column>
+
         <!-- Action (Edit, Delete)-->
-        <actionsColumn name="actions" class="\Source\App\Ui\Listing\Colums\Action">
+        <actionsColumn name="actions" class="\Source\App\Ui\Listing\Columns\Action">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="resizeEnabled" xsi:type="boolean">false</item>
                     <item name="resizeDefaultWidth" xsi:type="string">107</item>
                     <item name="indexField" xsi:type="string">product_id</item>
-                    <item name="sortOrder" xsi:type="number">11</item>
+                    <item name="sortOrder" xsi:type="number">140</item>
                 </item>
             </argument>
         </actionsColumn>
