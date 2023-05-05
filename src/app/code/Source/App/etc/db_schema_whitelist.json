@@ -30,10 +30,16 @@
             "quantity": true,
             "visibility": true,
             "tax_class": true,
-            "websites": true
+            "websites": true,
+            "type": true,
+            "size_id": true,
+            "attribute_set_id": true,
+            "attribute_set": true
         },
         "constraint": {
-            "PRIMARY": true
+            "PRIMARY": true,
+            "PRODUCT_SIZE_ID_SIZE_SIZE_ID": true,
+            "PRODUCT_ATTRIBUTE_SET_ID_ATTRIBUTE_SET_ATTRIBUTE_SET_ID": true
         }
     },
     "blog_post": {
@@ -44,6 +50,30 @@
             "meta_keywords": true,
             "meta_description": true,
             "content": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "size": {
+        "column": {
+            "size_id": true,
+            "product_id": true,
+            "size": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "SIZE_PRODUCT_ID_PRODUCT_PRODUCT_ID": true
+        }
+    },
+    "attribute_set": {
+        "column": {
+            "attribute_set_id": true,
+            "attribute_set": true,
             "created_at": true,
             "updated_at": true
         },

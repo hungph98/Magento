@@ -1,5 +1,7 @@
 <?php
 
+use Magento\Framework\App\Action\Action;
+use Magento\Framework\Escaper;
 use Source\App\Block\Frontend\Product\DetailProduct;
 
 const PARAM_NAME_BASE64_URL = 'r64';
@@ -18,7 +20,6 @@ $product_url = $productInfo->getBaseUrl();
 $product_image = ($block->getBaseUrl()) . 'media/source_app/product/' . ($productInfo->getData('thumbnail'));
 $product_status = $productInfo->getStatus();
 $product_sku = $productInfo->getSku();
-$product_attribute = $productInfo->getAttribute();
 ?>
 <div class="row">
     <div class="product-media">
@@ -43,7 +44,8 @@ $product_attribute = $productInfo->getAttribute();
             <div class="p-price">
                 <span class="p-detail-price">
                     <span style="font-size: 20px">As low as</span>
-                    <strong style="font-size: 35px; font-weight: bold; margin-top: 8px;"><?php echo "$" . $product_price; ?></strong>
+                    <strong
+                        style="font-size: 35px; font-weight: bold; margin-top: 8px;"><?php echo "$" . $product_price; ?></strong>
                 </span>
                 <span class="p-info-other">
                     <span><?php echo $product_status; ?></span>
@@ -60,7 +62,7 @@ $product_attribute = $productInfo->getAttribute();
                     <div class="swatch-option text" id="option-label-size-137-item-182" index="0" aria-checked="false"
                          aria-describedby="option-label-size-137" tabindex="0" data-option-type="0" data-option-id="182"
                          data-option-label="XS" aria-label="XS" role="option" data-thumb-width="110"
-                         data-thumb-height="90" data-option-tooltip-value="XS"><?php echo $product_attribute; ?>
+                         data-thumb-height="90" data-option-tooltip-value="XS">M
                     </div>
                 </div>
             </div>
@@ -116,10 +118,8 @@ $product_attribute = $productInfo->getAttribute();
             <div class="product-social-links">
                 <div class="product-addto-links" data-role="add-to-links">
                     <a href="#" class="action towishlist"
-                       data-post="{&quot;action&quot;:&quot;https:\/\/project.test\/wishlist\/index\/add\/&quot;,&quot;data&quot;:{&quot;product&quot;:441,&quot;uenc&quot;:&quot;aHR0cHM6Ly9wcm9qZWN0LnRlc3QvcHJvdGV1cy1maXRuZXNzLWphY2tzaGlydC5odG1s&quot;}}"
                        data-action="add-to-wishlist"><span>Add to Wish List</span></a>
                     <a href="#"
-                       data-post="{&quot;action&quot;:&quot;https:\/\/project.test\/catalog\/product_compare\/add\/&quot;,&quot;data&quot;:{&quot;product&quot;:&quot;441&quot;,&quot;uenc&quot;:&quot;aHR0cHM6Ly9wcm9qZWN0LnRlc3QvcHJvdGV1cy1maXRuZXNzLWphY2tzaGlydC5odG1s&quot;}}"
                        data-role="add-to-links" class="action tocompare"><span>Add to Compare</span></a>
 
                 </div>
@@ -341,6 +341,16 @@ $product_attribute = $productInfo->getAttribute();
     }
 </style>
 
-<script>
+<script type="text/x-magento-init">
+    {
+        "#product_addtocart_form": {
+            "Magento_Catalog/js/validate-product": {}
+        }
+    }
+
+
+
+
+
 
 </script>
