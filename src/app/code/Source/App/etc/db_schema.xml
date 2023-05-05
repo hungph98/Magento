@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
-    <!-- Table Frontend -->
+    <!-- Table product -->
     <table name="product" resource="default" engine="innodb" comment="Blog Post Table">
         <column xsi:type="smallint" name="product_id" unsigned="false" padding="5" nullable="false" identity="true"/>
+        <column xsi:type="smallint" name="size_id" unsigned="false" padding="5" nullable="true" identity="false"/>
+        <column xsi:type="smallint" name="attribute_set_id" unsigned="false" padding="5" nullable="true" identity="false"/>
         <column xsi:type="varchar" name="thumbnail" nullable="true" length="255"/>
         <column xsi:type="varchar" name="name" nullable="true" length="255"/>
         <column xsi:type="text" name="categories" nullable="true"/>
@@ -16,11 +18,34 @@
         <column xsi:type="smallint" name="tax_class" nullable="true" default="1"/>
         <column xsi:type="decimal" name="price" nullable="true" scale="2" precision="10"/>
         <column xsi:type="int" name="quantity" nullable="true"/>
-        <column xsi:type="varchar" name="attribute" nullable="true" length="255"/>
         <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"/>
         <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP"/>
         <constraint xsi:type="primary" referenceId="PRIMARY">
             <column name="product_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="SIZE_SIZE_ID_PRODUCT_SIZE_ID" table="product" column="size_id" referenceTable="size" referenceColumn="size_id"/>
+        <constraint xsi:type="foreign" referenceId="ATTRIBUTE_SET_ATTRIBUTE_SET_ID_PRODUCT_ATTRIBUTE_SET_ID" table="attribute_set" column="attribute_set_id" referenceTable="attribute_set" referenceColumn="attribute_set_id"/>
+    </table>
+
+    <!-- Size -->
+    <table name="size" resource="default" engine="innodb" comment="Size product">
+        <column xsi:type="smallint" name="size_id" unsigned="false" padding="5" nullable="false" identity="true"/>
+        <column xsi:type="varchar" name="size" nullable="true" length="255"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="size_id"/>
+        </constraint>
+    </table>
+
+    <!-- Attribute set-->
+    <table name="attribute_set" resource="default" engine="innodb" comment="Attribute set product">
+        <column xsi:type="smallint" name="attribute_set_id" unsigned="false" padding="5" nullable="false" identity="true"/>
+        <column xsi:type="varchar" name="attribute_set" nullable="true" length="255"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="attribute_set_id"/>
         </constraint>
     </table>
 </schema>

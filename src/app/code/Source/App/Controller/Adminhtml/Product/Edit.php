@@ -10,7 +10,7 @@ class Edit extends Action
     public function execute()
     {
         $resultPage = $this->resultFactory->create(ResultFactory::TYPE_PAGE);
-        $resultPage->getConfig()->getTitle()->prepend(__('Edit Frontend'));
+        $resultPage->getConfig()->getTitle()->prepend(__('Edit Product'));
         return $resultPage;
     }
 

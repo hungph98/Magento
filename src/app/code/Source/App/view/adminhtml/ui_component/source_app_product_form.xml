@@ -14,6 +14,7 @@
             <button name="delete" class="\Source\App\Block\Adminhtml\Index\Edit\Button\DeleteButton"/>
             <button name="save" class="\Source\App\Block\Adminhtml\Index\Edit\Button\SaveButton"/>
             <button name="reset" class="\Source\App\Block\Adminhtml\Index\Edit\Button\ResetButton"/>
+<!--            <button name="addAttribute" class="\Source\App\Block\Adminhtml\Index\Edit\Button\AddAttribute"/>-->
         </buttons>
         <namespace>source_app_listing_form</namespace>
         <dataScope>data</dataScope>
@@ -42,7 +43,7 @@
             <label>General</label>
         </settings>
 
-        <!-- Enable Frontend -->
+        <!-- Enable Product -->
         <field name="status" sortOrder="0" formElement="checkbox">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
@@ -68,8 +69,25 @@
             </formElements>
         </field>
 
+        <!-- Attribute_set-->
+<!--        <field name="attribute_set">-->
+<!--            <argument name="data" xsi:type="array">-->
+<!--                <item name="config" xsi:type="array">-->
+<!--                    <item name="label" xsi:type="string">Attribute set</item>-->
+<!--                    <item name="dataType" xsi:type="string">number</item>-->
+<!--                    <item name="formElement" xsi:type="string">select</item>-->
+<!--                    <item name="validation" xsi:type="array">-->
+<!--                        <item name="required-entry" xsi:type="boolean">true</item>-->
+<!--                    </item>-->
+<!--                    <item name="source" xsi:type="string">catalog_rule</item>-->
+<!--                    <item name="dataScope" xsi:type="string">customer_group_ids</item>-->
+<!--                </item>-->
+<!--                <item name="options" xsi:type="object">Magento\CatalogRule\Model\Rule\CustomerGroupsOptionsProvider</item>-->
+<!--            </argument>-->
+<!--        </field>-->
+
         <!-- Name -->
-        <field name="name" sortOrder="1" formElement="input">
+        <field name="name" sortOrder="2" formElement="input">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="source" xsi:type="string">product</item>
@@ -86,7 +104,7 @@
         </field>
 
         <!-- SKU -->
-        <field name="sku" sortOrder="2" formElement="input">
+        <field name="sku" sortOrder="3" formElement="input">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="source" xsi:type="string">product</item>
@@ -103,7 +121,7 @@
         </field>
 
         <!-- Price -->
-        <field name="price" sortOrder="3" formElement="input">
+        <field name="price" sortOrder="4" formElement="input">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="source" xsi:type="string">category</item>
@@ -123,7 +141,7 @@
         </field>
 
         <!-- Tax Class-->
-        <field name="tax_class" sortOrder="4" formElement="select">
+        <field name="tax_class" sortOrder="5" formElement="select">
             <settings>
                 <dataType>text</dataType>
                 <label translate="true">Tax Class</label>
@@ -148,7 +166,7 @@
         </field>
 
         <!-- Quantity-->
-        <field name="quantity" sortOrder="5" formElement="input">
+        <field name="quantity" sortOrder="6" formElement="input">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="source" xsi:type="string">product</item>
@@ -167,7 +185,7 @@
         </field>
 
         <!-- Stock Status-->
-        <field name="stock_status" sortOrder="6" formElement="checkbox">
+        <field name="stock_status" sortOrder="7" formElement="checkbox">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="source" xsi:type="string">product</item>
@@ -193,7 +211,7 @@
         </field>
 
         <!-- Categories -->
-        <field name="categories" sortOrder="7" formElement="input">
+        <field name="categories" sortOrder="8" formElement="input">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="source" xsi:type="string">product</item>
@@ -207,11 +225,11 @@
             </settings>
         </field>
 
-        <!-- Attributes -->
-        <field name="attribute" sortOrder="8" formElement="select">
+        <!-- Size -->
+        <field name="size" sortOrder="9" formElement="select">
             <settings>
                 <dataType>text</dataType>
-                <label translate="true">Attribute Set</label>
+                <label translate="true">Size</label>
             </settings>
             <formElements>
                 <select>
@@ -249,7 +267,7 @@
         </field>
 
         <!-- Visibility -->
-        <field name="visibility" sortOrder="9" formElement="select">
+        <field name="visibility" sortOrder="10" formElement="select">
             <settings>
                 <dataType>text</dataType>
                 <label translate="true">Visibility</label>

@@ -9,6 +9,7 @@ use Magento\Framework\Url\Helper\Data;
 use Source\App\Model\ProductFactory;
 use Magento\Catalog\Model\ResourceModel\Product\CollectionFactory;
 use Magento\Framework\View\Element\Template\Context;
+use Magento\Framework\App\ActionInterface;
 
 class DetailProduct extends \Magento\Framework\View\Element\Template
 {
@@ -69,11 +70,6 @@ class DetailProduct extends \Magento\Framework\View\Element\Template
         return $product;
     }
 
-    public function getImage($product): string
-    {
-        return $this->image->init($product, 'product_thumbnail_image')->getUrl();
-    }
-
     public function getProductById($product_id)
     {
         return $this->productFactory->create()->load($product_id);
@@ -88,7 +84,7 @@ class DetailProduct extends \Magento\Framework\View\Element\Template
         return $collection;
     }
 
-    public function getAddToCartPostParams($product)
+    public function getAddToCartPostParams($product): array
     {
         $url = $this->abstractProduct->getAddToCartUrl($product, ['_escape' => true]);
         return [
